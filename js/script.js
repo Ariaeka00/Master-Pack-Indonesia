@@ -38,44 +38,47 @@ document.addEventListener('scroll', (e) => {
 })
 
 // shopping cart
-const shoppingCartButton = document.getElementById('shopping-cart')
-const shoppingCart = document.querySelector('.shopping-cart')
+// const shoppingCartButton = document.getElementById('shopping-cart')
+// const shoppingCart = document.querySelector('.shopping-cart')
 
-shoppingCartButton.addEventListener('click', (e) => {
-    shoppingCart.classList.toggle('active')
-    e.preventDefault()
-})
+// shoppingCartButton.addEventListener('click', (e) => {
+//     shoppingCart.classList.toggle('active')
+//     e.preventDefault()
+// })
 
 // klik untuk menghilangkan shopping cart 
-document.addEventListener('click', (e) => {
-    if(!shoppingCartButton.contains(e.target) && !shoppingCart.contains(e.target)) {
-        shoppingCart.classList.remove('active')
-    }
-})
+// document.addEventListener('click', (e) => {
+//     if(!shoppingCartButton.contains(e.target) && !shoppingCart.contains(e.target)) {
+//         shoppingCart.classList.remove('active')
+//     }
+// })
 
 // modal detail
 const detail = document.querySelectorAll('.btn-detail')
-const modalDetail = document.getElementById('item-detail-modal')
+const modals = document.querySelectorAll('.modal')
 
 detail.forEach((btn) => {
     btn.addEventListener("click", (e) => {
-        modalDetail.style.display = 'flex'
+        const modalNumber = btn.dataset.modal
+        const modalShow = modals[modalNumber - 1]
+        console.log(modalShow)
+        modalShow.style.display = "flex"
         e.preventDefault()
     })
 })
 
 // close detail
-const close = document.querySelector('.close-icon')
-close.addEventListener('click', (e) => {
-    modalDetail.style.display = 'none'
-    e.preventDefault()
+modals.forEach((modal) => {
+    const close = modal.querySelector('.close-icon')
+    close.addEventListener('click', (e) => {
+        modal.style.display = 'none'
+        e.preventDefault()
+    })
 })
 
 // klik diluar detail
-window.addEventListener('click', (e) => {
-    if(e.target == modalDetail) {
-        modalDetail.style.display = 'none'
-    }
-})
-
-
+// window.addEventListener('click', (e) => {
+//     modals.forEach((modal) => {
+//         modals.style.display = 'none'
+//     })
+// })
